@@ -1,7 +1,7 @@
-function best=GA
+function GA
 clc;
 %Initialize
-px = 5;
+px = 100;
 py = 4;
 pos_cros = 0.88;%Possibiity of crossover
 pos_mut = 0.1;%Possibiity of mutation
@@ -15,8 +15,7 @@ last_best = 0;
 eval = evaluate(species);
 [best,idx] = max(eval);
 
-for k=1:1000
-    
+for k=1:100
     if last_best<best
         last_best = best;
         best_one = species(idx,:);
@@ -36,10 +35,10 @@ for k=1:1000
     eval = evaluate(species);
     [best, idx] = max(eval);
 end
-% 
-% %Print the answer
-% fprintf('The best outcome is %f\n',best);
-% for i=1:py
-%     fprintf('x%d = %f\n',i,best_one(i));
-% end
+
+%Print the answer
+fprintf('The best outcome is %f\n',best);
+for i=1:py
+    fprintf('x%d = %f\n',i,best_one(i));
+end
 
