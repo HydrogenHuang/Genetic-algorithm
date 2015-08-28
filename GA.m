@@ -37,8 +37,13 @@ for k=1:100
 end
 
 %Print the answer
-fprintf('The best outcome is %f\n',best);
+fprintf('The best outcome is %f\n',last_best);
 for i=1:py
     fprintf('x%d = %f\n',i,best_one(i));
 end
 
+function f = evaluate(val)
+%EVALUATE calculate the fitness of each series of the chromosome.
+
+[~,col]=size(val);
+f = 1./(val.^2 * ones(col,1)+1);
