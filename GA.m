@@ -9,17 +9,12 @@ species = rand(px,py).*10-5;%Range between -5 to 5
 
 syms eval eval_table; 
 syms last_best best_one;
-last_best = 0;
 
 %Evaluation
 eval = evaluate(species);
-[best,idx] = max(eval);
+last_best = max(eval);
 
 for k=1:100
-    if last_best<best
-        last_best = best;
-        best_one = species(idx,:);
-    end
     
     %Selection
     sel_species = select(species,eval);
@@ -34,6 +29,10 @@ for k=1:100
     species = new_species;
     eval = evaluate(species);
     [best, idx] = max(eval);
+    if last_best<best
+        last_best = best;
+        best_one = species(idx,:);
+    end
 end
 
 %Print the answer
